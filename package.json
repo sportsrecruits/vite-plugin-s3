@@ -1,0 +1,20 @@
+{
+  "name": "vite-plugin-s3",
+  "version": "0.0.1",
+  "description": "This plugin will upload all built assets to s3",
+  "main": "src/plugin.js",
+  "files": [
+    "src"
+  ],
+  "repository": "https://github.com/sportsrecruits/vite-plugin-s3",
+  "author": "James Burrow (james@sportsrecruits.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sportsrecruits/vite-plugin-s3/issues"
+  },
+  "homepage": "https://github.com/sportsrecruits/vite-plugin-s3",
+  "dependencies": {
+    "progress": "^2.0.3",
+    "s3-node": "^0.0.1"
+  }
+}

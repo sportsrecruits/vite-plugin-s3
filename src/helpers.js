@@ -53,8 +53,8 @@ function uploadFiles(files, config) {
             let params = {
                 localFile: file,
                 s3Params: {
-                    Bucket: config.s3UploadOptions.Bucket,
-                    Key: fileName.replace(/^\/|\/$/g, ''),
+                    ...config.s3UploadOptions,
+                    ...{Key: fileName.replace(/^\/|\/$/g, '')},
                 },
             };
 

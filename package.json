@@ -3,6 +3,11 @@
   "version": "0.1.2",
   "description": "This plugin will upload all built assets to s3",
   "main": "src/plugin.js",
+  "keywords": [
+    "vite",
+    "s3",
+    "vite-plugin"
+  ],
   "files": [
     "src"
   ],

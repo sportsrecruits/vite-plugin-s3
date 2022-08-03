@@ -70,6 +70,8 @@ viteS3({
 ### Example Usage
 
 ```bash
-$ UPLOAD_ENABLED=true AWS_ACCESS_KEY_ID=******************* AWS_SECRET_ACCESS_KEY=************************************** yarn prod
+$ UPLOAD_ENABLED=true AWS_ACCESS_KEY_ID=******* AWS_SECRET_ACCESS_KEY=******** yarn prod
 ```
+
+![image](https://user-images.githubusercontent.com/16297677/182513452-7bb33844-db5b-463b-bc62-2f2bcf26ff69.png)
 

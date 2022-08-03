@@ -8,10 +8,11 @@ const defaultConfig = {
     uploadEnabled: true,
     exclude: '',
     include: '',
-    s3Root: '',
+    basePath: '',
     useHashAsRoot: true,
     hashFile: 's3-assets-manifest.json',
     hasher: (buildDir) => crypto.createHash('md5').update(fs.readFileSync(`${buildDir}/manifest.json`)).digest("hex"),
+    onFinished: (config) => {}, 
 };
 
 function getFilesForUpload(dirPath, include, exclude) {
@@ -44,10 +45,10 @@ function uploadFiles(files, config) {
     
     files.forEach((file) => {
         promises.push(new Promise((resolve, reject) => {
-            let fileName = `${config.s3Root}${file.replace(config.rootDir, '')}`;
+            let fileName = `${config.basePath}${file.replace(config.rootDir, '')}`;
 
             if (hash) {
-                fileName = `${config.s3Root}/${hash}${file.replace(config.rootDir, '')}`
+                fileName = `${config.basePath}/${hash}${file.replace(config.rootDir, '')}`
             }
 
             let params = {
@@ -78,6 +79,8 @@ function uploadFiles(files, config) {
         }
 
         console.log("\n");
+        
+        config.onFinished(config);
     });
 }
 

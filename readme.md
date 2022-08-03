@@ -1,6 +1,6 @@
 This plugin will upload all built assets to s3.
 
-This package was heavily inspired by [this existing package](https://www.npmjs.com/package/webpack-s3-plugin)
+This package was heavily inspired by [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin)
 and also [Laravel vapor's asset deployment](https://docs.vapor.build/1.0/projects/deployments.html#assets).
 
 ### Install Instructions
@@ -17,16 +17,18 @@ $ yarn add vite-plugin-s3
 import viteS3 from 'vite-plugin-s3';
 
 export default defineConfig({
-    plugins: [viteS3({
-        s3Options: {
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-            region: 'us-east-1'
-        },
-        s3UploadOptions: {
-            Bucket: 'dist-cdn',
-        },
-    })]
+    plugins: [
+        viteS3({
+            s3Options: {
+                accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+                region: 'us-east-1'
+            },
+            s3UploadOptions: {
+                Bucket: 'dist-cdn',
+            },
+        }),
+    ]
 });
 ```
 
@@ -64,7 +66,7 @@ viteS3({
 | `useHashAsRoot`   | `Boolean`  | `true`                    | When enabled the uploaded assets will be located at s3://[basePath]/[output of hasher()]                               |
 | `hashFile`        | `String`   | `s3-assets-manifest.json` | This json file will contain the calculated output of hasher()                                                          |
 | `hasher`          | `Function` |                           | Customize the behavior of how the hash gets calculated (defaults to an md5 of manifest.json)                           |
-| `onFinished`      | `Function` |                           | This callback will be invoked after gall operations are complete                                                       |
+| `onFinished`      | `Function` |                           | This callback will be invoked after all operations are complete                                                        |
 
 
 ### Example Usage

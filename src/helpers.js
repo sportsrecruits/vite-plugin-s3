@@ -75,7 +75,7 @@ function uploadFiles(files, config) {
 
     return Promise.all(promises).then(() => {
         if (hash) {
-            fs.writeFileSync(config.hashFile, JSON.stringify({hash: hash}));
+            fs.writeFileSync(config.hashFile, JSON.stringify({hash: hash}, null, 1));
         }
 
         console.log("\n");

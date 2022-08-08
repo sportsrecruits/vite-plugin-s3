@@ -48,25 +48,21 @@ viteS3({
         Bucket: 'dist-cdn',
     },
     basePath: 'production',
-    useHashAsRoot: true,
-    hashFile: 's3-assets-manifest.json',
 })
 ```
 
 ### Options
 
-| Option            | Type       | Default                   | Description                                                                                                            | 
-|-------------------|------------|---------------------------|------------------------------------------------------------------------------------------------------------------------|
-| `uploadEnabled`   | `Boolean`  | `true`                    | This setting can be used to disable or enable the uploading of assets                                                  |
-| `exclude`         | `String`   |                           | A Regex Pattern to match for excluded content                                                                          |
-| `include`         | `String`   |                           | A Regex Pattern to match for `included` content. Behaves the same as `exclude`                                         |
-| `s3Options`       | `Object`   |                           | Upload options for [s3Config](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property) |
-| `s3UploadOptions` | `Object`   |                           | Upload options for [putObject](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property)      |
-| `basePath`        | `String`   |                           | The root namespace of uploaded files on S3                                                                             |
-| `useHashAsRoot`   | `Boolean`  | `true`                    | When enabled the uploaded assets will be located at s3://[basePath]/[output of hasher()]                               |
-| `hashFile`        | `String`   | `s3-assets-manifest.json` | This json file will contain the calculated output of hasher()                                                          |
-| `hasher`          | `Function` |                           | Customize the behavior of how the hash gets calculated (defaults to an md5 of manifest.json)                           |
-| `onFinished`      | `Function` |                           | This callback will be invoked after all operations are complete                                                        |
+| Option            | Type       | Default                   | Description                                                                                                                                                                                 | 
+|-------------------|------------|---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `uploadEnabled`   | `Boolean`  | `true`                    | This setting can be used to disable or enable the uploading of assets                                                                                                                       |
+| `exclude`         | `String`   |                           | A Regex Pattern to match for excluded content                                                                                                                                               |
+| `include`         | `String`   |                           | A Regex Pattern to match for `included` content. Behaves the same as `exclude`                                                                                                              |
+| `s3Options`       | `Object`   |                           | Upload options for [s3Config](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property)                                                                      |
+| `s3UploadOptions` | `Object`   |                           | Upload options for [putObject](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property)                                                                           |
+| `basePath`        | `String`   |                           | The root namespace of uploaded files on S3                                                                                                                                                  |                             |                                                        |
+| `hasher`          | `Function` |                           | Customize the behavior of how the manifest file gets hashed                                                                                                                                 |
+| `onFinished`      | `Function` |                           | This callback will be invoked after all operations are complete.  The parameters passed are the instance of the s3 client used for uploading, the plugin config, and the manifest file hash |
 
 
 ### Example Usage

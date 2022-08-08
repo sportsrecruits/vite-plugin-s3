@@ -9,8 +9,6 @@ const defaultConfig = {
     exclude: '',
     include: '',
     basePath: '',
-    useHashAsRoot: true,
-    hashFile: 's3-assets-manifest.json',
     hasher: (buildDir) => crypto.createHash('md5').update(fs.readFileSync(`${buildDir}/manifest.json`)).digest("hex"),
     onFinished: (config) => {}, 
 };
@@ -37,19 +35,11 @@ function uploadFiles(files, config) {
     let promises = [];
     let client = s3.createClient(config.s3Options);
     let bar = new ProgressBar('\x1b[32mUploading Assets to S3 \x1b[0m\x1b[33m[:bar] :current/:total\x1b[0m', { total: files.length, width: 100, });
-    let hash;
-
-    if (config.useHashAsRoot) {
-        hash = config.hasher(config.buildDir);
-    }
+    let manifestHash = config.hasher(config.buildDir);
     
     files.forEach((file) => {
         promises.push(new Promise((resolve, reject) => {
             let fileName = `${config.basePath}${file.replace(config.rootDir, '')}`;
-
-            if (hash) {
-                fileName = `${config.basePath}/${hash}${file.replace(config.rootDir, '')}`
-            }
 
             let params = {
                 localFile: file,
@@ -74,13 +64,9 @@ function uploadFiles(files, config) {
     });
 
     return Promise.all(promises).then(() => {
-        if (hash) {
-            fs.writeFileSync(config.hashFile, JSON.stringify({hash: hash}, null, 1));
-        }
-
-        console.log("\n");
+        config.onFinished(client, config, manifestHash);
         
-        config.onFinished(config);
+        console.log("\n");
     });
 }
 

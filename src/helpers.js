@@ -9,6 +9,7 @@ const defaultConfig = {
     exclude: '',
     include: '',
     basePath: '',
+    basePathTransform: (file, config) => config.basePath,
     hasher: (buildDir) => crypto.createHash('md5').update(fs.readFileSync(`${buildDir}/manifest.json`)).digest("hex"),
     onFinished: (config) => {}, 
 };
@@ -39,7 +40,7 @@ function uploadFiles(files, config) {
     
     files.forEach((file) => {
         promises.push(new Promise((resolve, reject) => {
-            let fileName = `${config.basePath}${file.replace(config.rootDir, '')}`;
+            let fileName = `${config.basePathTransform(file, config)}${file.replace(config.buildDir, '')}`;
 
             let params = {
                 localFile: file,

@@ -34,7 +34,7 @@ function uploadFiles(files, config) {
     console.log("\n");
 
     let promises = [];
-    let client = s3.createClient(config.s3Options);
+    let client = s3.createClient({ s3Options: config.s3Options });
     let bar = new ProgressBar('\x1b[32mUploading Assets to S3 \x1b[0m\x1b[33m[:bar] :current/:total\x1b[0m', { total: files.length, width: 100, });
     let manifestHash = config.hasher(config.buildDir);
     

@@ -1,3 +1,13 @@
+### Upgrading to 1.0.0
+There are breaking changes in the latest release of 1.0.0
+
+You must use the named import now for the plugin instead of the default export.
+
+```javascript
+import { viteS3 } from 'vite-plugin-s3';
+```
+
+___
 This plugin will upload all built assets to s3.
 
 This package was heavily inspired by [webpack-s3-plugin](https://www.npmjs.com/package/webpack-s3-plugin)
@@ -14,7 +24,7 @@ $ yarn add vite-plugin-s3
 ##### Import `vite-plugin-s3` in your vite config file and add it as a vite plugin.
 
 ```javascript
-import viteS3 from 'vite-plugin-s3';
+import { viteS3 } from 'vite-plugin-s3';
 
 export default defineConfig({
     plugins: [

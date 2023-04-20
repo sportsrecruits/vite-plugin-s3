@@ -10,7 +10,7 @@ const defaultConfig = {
     include: '',
     basePath: '',
     basePathTransform: (file, config) => config.basePath,
-    hasher: (buildDir) => crypto.createHash('md5').update(fs.readFileSync(`${buildDir}/manifest.json`)).digest("hex"),
+    hasher: (buildDir) => fs.existsSync(`${buildDir}/manifest.json`) ? crypto.createHash('md5').update(fs.readFileSync(`${buildDir}/manifest.json`)).digest("hex") : '',
     onFinished: (config) => {}, 
 };
 

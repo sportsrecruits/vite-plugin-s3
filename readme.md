@@ -1,3 +1,5 @@
+### This package is passively maintained. Pull requests will be reviewed and accepted but submitted issues will be addressed as time allows.  Thank you for understanding
+
 ### Upgrading to 1.0.0
 There are breaking changes in the latest release of 1.0.0
 
